@@ -1,5 +1,4 @@
-using API.Data;
-using Microsoft.EntityFrameworkCore;
+using API.Extensions;
 
 internal class Program
 {
@@ -10,16 +9,21 @@ internal class Program
         // Add services to the container.
 
         builder.Services.AddControllers();
+        builder.Services.AddApplicationServices(builder.Configuration);
+        builder.Services.AddIdentityServices(builder.Configuration);
 
-        builder.Services.AddDbContext<DataContext>(opt =>
-        {
-            opt.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
-        });
-        builder.Services.AddCors();
+       
+    
 
         var app = builder.Build();
 
-        app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
+
+
+        app.UseCors(builder => builder.AllowAnyHeader().AllowAnyMethod()
+        .WithOrigins("https://localhost:4200"));
+
+        app.UseAuthentication();
+        app.UseAuthorization();
 
         app.MapControllers();
 
