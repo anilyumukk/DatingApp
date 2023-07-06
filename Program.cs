@@ -1,4 +1,6 @@
 using API.Extensions;
+using API.Middleware;
+using Microsoft.AspNetCore.Diagnostics;
 
 internal class Program
 {
@@ -16,6 +18,8 @@ internal class Program
     
 
         var app = builder.Build();
+
+        app.UseMiddleware<ExceptionMiddleware>();
 
 
 
