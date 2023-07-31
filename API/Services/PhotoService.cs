@@ -14,7 +14,7 @@ namespace API.Services
         {
             var acc = new Account
             (
-                config.Value.ColudName,
+                config.Value.CloudName,
                 config.Value.ApiKey,
                 config.Value.ApiSecret
             );
@@ -38,11 +38,10 @@ namespace API.Services
            return uploadResult;
         }
 
-        public async Task<DeletionResult> DeletionResultAsync(string publicId)
+        public async Task<DeletionResult> DeletePhotoAsync(string publicId)
         {
             var deleteParams = new DeletionParams(publicId);
             return await _cloudinary.DestroyAsync(deleteParams);
         }
-
     }
 }
