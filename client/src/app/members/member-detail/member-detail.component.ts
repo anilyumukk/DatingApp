@@ -79,16 +79,6 @@ getImages(){
   return imageUrls;
 }
 
-// loadMember(){
-//   var username = this.route.snapshot.paramMap.get('username');
-//   if(!username) return;
-//   this.memberService.getMember(username).subscribe({
-//     next: member => {this.member=member;
-//       this.galleryImages=this.getImages();
-//     }
-//   })
-  
-// }
 
 selectTab(heading:string){
   if(this.memberTabs){
@@ -107,10 +97,10 @@ loadMessages() {
   }) 
 }
 }
-//constructora account service neden eklendi
+
 onTabActivated(data:TabDirective){
   this.activeTab=data;
-  if(this.activeTab.heading==='Messages' && this.user){
+  if(this.activeTab?.heading==='Messages' && this.user){
     this.messageService.createHubConnection(this.user,this.member.userName);
 }
 else{

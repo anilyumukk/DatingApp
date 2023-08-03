@@ -2,7 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, throwError } from 'rxjs';
 import { User } from '../_models/user';
-import { environment } from '../environments/enviroment';
+import { environment } from '../environments/environment';
 import { PresenceService } from './presence.service';
 
 @Injectable({
@@ -13,7 +13,7 @@ export class AccountService {
   private currentUserSource = new BehaviorSubject<User | null>(null);
   currentUser$ = this.currentUserSource.asObservable();
 
-  constructor(private http: HttpClient ,private presenceService:PresenceService) { }
+  constructor(private http: HttpClient, private presenceService: PresenceService) { }
 
 
 
@@ -46,13 +46,13 @@ export class AccountService {
     );
   }
 
-  
+
 
   setCurrentUser(user: User) {
     user.roles = [];
-    const roles= this.getDecodedToken(user.token).role;
+    const roles = this.getDecodedToken(user.token).role;
     Array.isArray(roles) ? user.roles = roles : user.roles.push(roles);
-    localStorage.setItem('user',JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
     this.currentUserSource.next(user);
     this.presenceService.createHubConnection(user);
   }
@@ -63,7 +63,7 @@ export class AccountService {
     this.presenceService.stopHubConnection();
   }
 
-  getDecodedToken(token:string) {
+  getDecodedToken(token: string) {
     return JSON.parse(atob(token.split('.')[1]))
   }
 }

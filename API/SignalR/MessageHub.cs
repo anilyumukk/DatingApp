@@ -67,7 +67,7 @@ namespace API.SignalR
             {
                 Sender = sender,
                 Recipient=recipient,
-                SendeUsername=sender.UserName,
+                SenderUsername=sender.UserName,
                 RecipientUsername=recipient.UserName,
                 Content=createMessageDto.Content
             };

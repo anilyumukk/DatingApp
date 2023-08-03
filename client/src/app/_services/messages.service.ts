@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { environment } from '../environments/enviroment';
+import { environment } from '../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { getPaginationHeaders, getPaginationResult } from './paginationHelper';
 import { Message } from '../_models/message';
@@ -78,19 +78,16 @@ export class MessagesService {
     return this.http.get<Message[]>(this.baseUrl + 'messages/thread/' + username);
   }
 
-  async sendMessage(username: string, content: string) 
-  {
+  async sendMessage(username: string, content: string) {
     return this.hubConnection?.invoke('SendMessage', {
       recipientUsername: username, content
     }).catch(error => console.log(error));
   }
-  deleteMessage(id: number) 
-  {
+  deleteMessage(id: number) {
     return this.http.delete(this.baseUrl + 'messages/' + id);
   }
 }
-function build() 
-{
+function build() {
   throw new Error('Function not implemented.');
 }
 

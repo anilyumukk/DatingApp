@@ -21,16 +21,15 @@ export class MessagesComponent implements OnInit {
 
 
   ngOnInit(): void {
+    
     this.loadMessages();
-
-
   }
-
 
   loadMessages() {
     this.loading=true;
     this.messageService.getMessages(this.pageNumber,this.pageSize,this.container).subscribe({
       next:response =>{
+        console.log(response)
         this.messages=response.result;        
         this.pagination =response.pagination;
         this.loading=false;
@@ -38,15 +37,7 @@ export class MessagesComponent implements OnInit {
     })
   }
 
-  
-  // loadMessages() {
-  //   this.loading = true;
-  //   this.messageService.getMessages(this.pageNumber, this.pageSize, this.container).subscribe(res => {
-  //     this.messages = res.result
-  //     this.loading = false;
-  //     this.pagination=res.pagination;
-  //   })
-  // } 
+ 
 
   deleteMessage(id: number) {
     this.messageService.deleteMessage(id).subscribe({

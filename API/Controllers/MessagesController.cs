@@ -37,7 +37,7 @@ namespace API.Controllers
             {
                 Sender = sender,
                 Recipient=recipient,
-                SendeUsername=sender.UserName,
+                SenderUsername=sender.UserName,
                 RecipientUsername=recipient.UserName,
                 Content=createMessageDto.Content
             };
@@ -64,11 +64,11 @@ namespace API.Controllers
 
             var message = await _uow.MessageRepository.GetMessage(id);
 
-            if(message.SendeUsername != username && message.RecipientUsername != username)
+            if(message.SenderUsername != username && message.RecipientUsername != username)
 
              return Unauthorized();
 
-            if(message.SendeUsername==username) message.SenderDeleted=true;
+            if(message.SenderUsername==username) message.SenderDeleted=true;
 
             if(message.RecipientUsername == username) message.RecipientDeleted=true;
 

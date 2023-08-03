@@ -57,14 +57,14 @@
                 <td>
                     <div *ngIf="container==='Outbox'">
                         <img
-                        class="ing-circle rounded-circle me-2"
+                        class="img-circle rounded-circle me-2"
                          src="{{message.recipientPhotoUrl || './assets/user.png'}}" alt="recipient Photo">
                         <strong> {{message.recipientUsername | titlecase}}</strong>
                     </div>
 
                     <div *ngIf="container!=='Outbox'">
                         <img
-                        class="ing-circle rounded-circle me-2" 
+                        class="img-circle rounded-circle me-2" 
                         src="{{message.senderPhotoUrl || './assets/user.png'}}" alt="recipient Photo">
                         <strong> {{message.senderUsername | titlecase}}</strong>
                     </div>
